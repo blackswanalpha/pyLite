@@ -1,0 +1,28 @@
+create a detailed installation guide and documentation of the framework
+create a command for pip to install pylite framework
+command must allow the creation of project name
+allow for all exceptions that may occur to be managed
+create routing, database connections , and run the run.py file after  configurations on app.py
+allow conection to assets directory for assests (storage) that are stored in the project on the config.py file
+creation of a schema.py for user custom data/classes for viewing on desktop , moblie and web
+
+create a custom directory called components/blog that contains:
+ -create a models.py for user(default blog) created models
+ -create a service.py for developer specified crud operations and to connect schema and model classes
+ -just like fastapi
+
+On electron desktop make it possible to utilize Nextjs (Typescript) for frontend display
+make it possible to send and recieve data (databse) from the backend(Flask) to the frontend(Nextjs)
+
+create a run.py for framework to run the app while running the web, desktop and moblie platforms as per developer requirements/request (on the command prompt/terminal)
+allow modules to be downloaded
+change the directory from root/desktop(/web/mobile) to root/platform/desktop(/web/mobile)
+on the plaform directory have the following:
+  -url.py for assisting in sending custom url for request and recieving data while indicating url paths for the platforms to follow and the concurrent CRUD OPERATIONS to be done
+  -settings.py for making changes to plaforms while perfoming exception management of url/code
+  -just like django
+create a file called development.log that keeps track of the projects and perform debugging where necessary
+
+
+
+password AwBq_gx6cGgth4M
