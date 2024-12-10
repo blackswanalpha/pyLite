@@ -17,12 +17,12 @@ setup(
             'pylite=pylite.cli:main',
         ],
     },
-    author='Your Name',
-    author_email='your.email@example.com',
+    author=' kamande_mbugua-97.18',
+    author_email='kamandembugua18@gmail.com',
     description='A lightweight framework for creating desktop, mobile, and web applications.',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    url='https://github.com/yourusername/pylite',  # Update this with your actual repo URL
+    url='https://github.com/blackswanalpha/pyLite',  # Update this with your actual repo URL
     classifiers=[
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',

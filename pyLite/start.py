@@ -23,7 +23,7 @@ if __name__ == "__main__":
     install_python_requirements()
 
     # Install npm packages for desktop app
-    desktop_path = os.path.join("desktop")
+    desktop_path = os.path.join("../platform/desktop")
     if os.path.exists(desktop_path):
         install_npm_packages(desktop_path)
     else:

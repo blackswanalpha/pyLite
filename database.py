@@ -2,7 +2,7 @@ from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, scoped_session
 
-import config
+from pyLite import config
 
 engine = create_engine(config.DATABASE_URL)
 SessionLocal = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
