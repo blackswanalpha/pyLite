@@ -1,21 +1,12 @@
-from sqlalchemy import create_engine, Column, Integer, String
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker, scoped_session
+from flask_sqlalchemy import SQLAlchemy
 
-from pyLite import config
+# Initialize the database
+db = SQLAlchemy()
 
-engine = create_engine(config.DATABASE_URL)
-SessionLocal = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
-Base = declarative_base()
+def init_db(app):
+    db.init_app(app)
+    with app.app_context():
+        db.create_all()
 
-class User(Base):
-    __tablename__ = "users"
-
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, index=True)
-
-def init_db():
-    Base.metadata.create_all(bind=engine)
-
-def get_db():
-    return scoped_session(SessionLocal)
+def create_table(model):
+    model.__table__.create(db.engine)

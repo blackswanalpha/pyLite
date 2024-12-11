@@ -28,10 +28,15 @@ def create(project_name):
     copy_template('schema.py', project_dir)
     copy_template('development.log', project_dir)
 
+    pyLite_dir = os.path.join(project_dir, 'components', 'blog')
+    create_directory(pyLite_dir)
+
+
+
     components_dir = os.path.join(project_dir, 'components', 'blog')
     create_directory(components_dir)
-    copy_template('components/blog/models.py', components_dir)
     copy_template('components/blog/service.py', components_dir)
+    copy_template('components/blog/url.py', components_dir)
 
     platform_dir = os.path.join(project_dir, 'platform')
     create_directory(platform_dir)

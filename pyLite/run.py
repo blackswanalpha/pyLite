@@ -3,7 +3,7 @@ import subprocess
 import argparse
 
 def run_flask():
-    subprocess.run(["python", "app.py"])
+    subprocess.run(["python", "../app.py"])
 
 def run_nextjs():
     subprocess.run(["npm", "run", "dev"], cwd="platform/desktop")

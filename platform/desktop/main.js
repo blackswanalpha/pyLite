@@ -1,26 +1,50 @@
-const { app, BrowserWindow } = require('electron')
-const path = require('path')
+const { app, BrowserWindow } = require('electron');
+const path = require('path');
+const axios = require('axios');
 
-function createWindow () {
-  const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
-    }
-  })
+function createWindow() {
+    const mainWindow = new BrowserWindow({
+        width: 800,
+        height: 600,
+        webPreferences: {
+            preload: path.join(__dirname, 'preload.js')
+        }
+    });
 
-  mainWindow.loadURL('http://127.0.0.1:5000')
+    mainWindow.loadFile('../../templates/index.html');
 }
 
-app.whenReady().then(() => {
-  createWindow()
+// Example Axios usage to fetch posts
+axios.get('http://127.0.0.1:5000/api/blog/posts/get')
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error('Error fetching posts:', error);
+    });
 
-  app.on('activate', function () {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow()
-  })
+// Example Axios usage to add a new post
+axios.post('http://127.0.0.1:5000/api/blog/posts/add', {
+    title: 'New Post',
+    content: 'This is the content of the new post.'
 })
+.then(response => {
+    console.log('Post created:', response.data);
+})
+.catch(error => {
+    console.error('Error creating post:', error);
+});
 
-app.on('window-all-closed', function () {
-  if (process.platform !== 'darwin') app.quit()
-})
+app.on('ready', createWindow);
+
+app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') {
+        app.quit();
+    }
+});
+
+app.on('activate', () => {
+    if (BrowserWindow.getAllWindows().length === 0) {
+        createWindow();
+    }
+});

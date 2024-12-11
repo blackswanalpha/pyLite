@@ -3,21 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/css/style.css">
-    <title>PyLite Framework</title>
+    <title>PyLite Blog</title>
 </head>
 <body>
-    <h1>PyLite Framework</h1>
-    <button id="randomNumberBtn">Get Random Number</button>
-    <p id="randomNumber"></p>
-    <input type="text" id="stringInput" placeholder="Enter a string">
-    <button id="reverseStringBtn">Reverse String</button>
-    <p id="reversedString"></p>
-    <input type="text" id="userNameInput" placeholder="Enter a name">
-    <button id="addUserBtn">Add User</button>
-    <button id="getUsersBtn">Get Users</button>
-    <ul id="userList"></ul>
+    <h1>PyLite Blog</h1>
+    <div id="posts"></div>
+    <script>
+        const postsContainer = document.getElementById('posts');
 
-    <script src="/static/js/main.js"></script>
+        // Fetch posts and display them
+        fetch('http://127.0.0.1:5000/api/blog/posts/get')
+            .then(response => response.json())
+            .then(posts => {
+                posts.forEach(post => {
+                    const postElement = document.createElement('div');
+                    postElement.innerHTML = `
+                        <h2>${post.title}</h2>
+                        <p>${post.content}</p>
+                        <small>${post.created_at}</small>
+                    `;
+                    postsContainer.appendChild(postElement);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching posts:', error);
+            });
+    </script>
 </body>
 </html>

@@ -41,16 +41,32 @@
 
 
 from flask import Flask
+
+from components.blog.url import blog_service
 from pyLite.config import Config
 from flask_sqlalchemy import SQLAlchemy
+from database import init_db
+
 
 app = Flask(__name__)
 app.config.from_object(Config)
 db = SQLAlchemy(app)
+# Initialize the database
+init_db(app)
+
+# Ensure all tables are created
+with app.app_context():
+    db.create_all()
+
+# Register blueprints
+app.register_blueprint(blog_service, url_prefix='/api/blog')
+
 
 @app.route('/')
 def index():
     return "Welcome to PyLite!"
 
 if __name__ == "__main__":
+
+    db.create_all()# Create the tables
     app.run(debug=True)
